@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Ko86KDJybFi3+s0xzSNUIsqopK2QEULNoHIdO7fSo/8MyQbhNQWQaq+wbqdBH5Tih0hdal5zCHnLPSOsaf9ESA==",
+  "dgSpecHash": "kFFX8h2VYgGIcyDCJg/MCTHUHS/e6THdqhAYvYBGVw+NMVNw5o6KVECxfipQa+Yn0+Atv3Vga4/O6NE+aDkSqQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\lhgzhy0\\Desktop\\ex\\dotnetcore-learning-backup\\dotnet-st-backup\\egConsole\\egConsole\\egConsole.csproj",
+  "projectFilePath": "C:\\Users\\lhgzhy0\\Desktop\\ex\\dotnet-st-backup\\egConsole\\egConsole\\egConsole.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\lhgzhy0\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\lhgzhy0\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",

@@ -1,0 +1,10 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\egEmployee",
+    "\\egEmployee\\egEmployee",
+    "\\egEmployee\\egEmployee\\Data"
+  ],
+  "SelectedNode": "\\egEmployee\\egEmployee\\Data\\EmployeeSalaryRepository.cs",
+  "PreviewInSolutionExplorer": false
+}

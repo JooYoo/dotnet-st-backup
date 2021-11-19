@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\lhgzhy0\\Desktop\\ex\\dotnetcore-learning-backup\\dotnet-st-backup\\egConsole\\egConsole\\egConsole.csproj": {}
+    "C:\\Users\\lhgzhy0\\Desktop\\ex\\dotnet-st-backup\\egConsole\\egConsole\\egConsole.csproj": {}
   },
   "projects": {
-    "C:\\Users\\lhgzhy0\\Desktop\\ex\\dotnetcore-learning-backup\\dotnet-st-backup\\egConsole\\egConsole\\egConsole.csproj": {
+    "C:\\Users\\lhgzhy0\\Desktop\\ex\\dotnet-st-backup\\egConsole\\egConsole\\egConsole.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\lhgzhy0\\Desktop\\ex\\dotnetcore-learning-backup\\dotnet-st-backup\\egConsole\\egConsole\\egConsole.csproj",
+        "projectUniqueName": "C:\\Users\\lhgzhy0\\Desktop\\ex\\dotnet-st-backup\\egConsole\\egConsole\\egConsole.csproj",
         "projectName": "egConsole",
-        "projectPath": "C:\\Users\\lhgzhy0\\Desktop\\ex\\dotnetcore-learning-backup\\dotnet-st-backup\\egConsole\\egConsole\\egConsole.csproj",
+        "projectPath": "C:\\Users\\lhgzhy0\\Desktop\\ex\\dotnet-st-backup\\egConsole\\egConsole\\egConsole.csproj",
         "packagesPath": "C:\\Users\\lhgzhy0\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\lhgzhy0\\Desktop\\ex\\dotnetcore-learning-backup\\dotnet-st-backup\\egConsole\\egConsole\\obj\\",
+        "outputPath": "C:\\Users\\lhgzhy0\\Desktop\\ex\\dotnet-st-backup\\egConsole\\egConsole\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

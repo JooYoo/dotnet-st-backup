@@ -57,5 +57,29 @@ namespace egConsole.Controllers
             _gameConsoleService.DeleteGameConsoleById(id);
             return Ok();
         }
+
+        // TEMP: ✅ return List<T>
+        [HttpGet("sp-get-all")]
+        public IActionResult SqGetAll()
+        {
+            var theAll = _gameConsoleService.GetAllSp();
+            return Ok(theAll);
+        }
+
+        // TEMP: ✅ @Parameter, return List<T>
+        [HttpGet("sp-get-consoles-by-company/{company}")]
+        public IActionResult SqGetConsolesByCompany(string company)
+        {
+            var theConsoles = _gameConsoleService.GetConsolesByCompanySp(company);
+            return Ok(theConsoles);
+        }
+
+        // FIXME: ❎ @Parameter, return string
+        [HttpGet("sp-get-company-by-console/{consoleName}")]
+        public IActionResult SqGetCompanyByConsoleName(string consoleName)
+        {
+            var theGameCompany = _gameConsoleService.GetCompanyByConsoleSp(consoleName);
+            return Ok(theGameCompany);
+        }
     }
 }

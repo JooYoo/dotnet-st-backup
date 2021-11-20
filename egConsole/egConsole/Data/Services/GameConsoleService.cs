@@ -1,5 +1,6 @@
 ﻿using egConsole.Data.Models;
 using egConsole.Data.ViewModels;
+using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -36,7 +37,6 @@ namespace egConsole.Data.Services
             return _context.GameConsoles.FirstOrDefault(g => g.ConsoleID == gameConsoleId);
         }
 
-        // TODO: execute StoreProcedure here
         public string GetCompanyByName(string consoleName)
         {
             var gameConsole = _context.GameConsoles.FirstOrDefault(g => g.ConsoleName == consoleName);
@@ -71,6 +71,25 @@ namespace egConsole.Data.Services
                 _context.GameConsoles.Remove(_gameConsole);
                 _context.SaveChanges();
             }
+        }
+
+        // TEMP: ✅ return List<T>
+        public List<GameConsole> GetAllSp()
+        {
+            return _context.GameConsoles.FromSqlRaw("EXECUTE dbo.GetAll").ToList();
+        }
+
+        // TEMP: ✅ @Parameter, return List<T>
+        public List<GameConsole> GetConsolesByCompanySp(string company)
+        {
+            return _context.GameConsoles.FromSqlRaw("EXECUTE dbo.GetConsolesByCompany {0}", company).ToList();
+        }
+
+        // FIXME: ❎ @Parameter, return string
+        public string GetCompanyByConsoleSp(string consoleName)
+        {
+            var test = _context.GameConsoles.FromSqlRaw("EXECUTE dbo.GetCompanyByName {0}", consoleName);
+            return _context.GameConsoles.FromSqlRaw("EXECUTE dbo.GetCompanyByName", consoleName).ToString();
         }
     }
 }

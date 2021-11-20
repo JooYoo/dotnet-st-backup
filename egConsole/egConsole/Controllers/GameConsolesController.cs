@@ -30,6 +30,13 @@ namespace egConsole.Controllers
             return Ok(theGameConsole);
         }
 
+        [HttpGet("get-consolecompany-by-consolename/{consoleName}")]
+        public IActionResult GetCompanyByConsoleName(string consoleName)
+        {
+            var theGameCompany = _gameConsoleService.GetCompanyByName(consoleName);
+            return Ok(theGameCompany);
+        }
+
         [HttpPost("add-gameconsole")]
         public IActionResult AddGameConsole([FromBody]GameConsoleVM gameConsole)
         {

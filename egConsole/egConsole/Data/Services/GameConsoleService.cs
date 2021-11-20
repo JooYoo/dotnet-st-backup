@@ -36,6 +36,13 @@ namespace egConsole.Data.Services
             return _context.GameConsoles.FirstOrDefault(g => g.ConsoleID == gameConsoleId);
         }
 
+        // TODO: execute StoreProcedure here
+        public string GetCompanyByName(string consoleName)
+        {
+            var gameConsole = _context.GameConsoles.FirstOrDefault(g => g.ConsoleName == consoleName);
+            return gameConsole.ConsoleCompany;
+        }
+
         public GameConsole UpdateGameConsoleById(int id, GameConsoleVM gameConsole)
         {
             // find object in DB by Id

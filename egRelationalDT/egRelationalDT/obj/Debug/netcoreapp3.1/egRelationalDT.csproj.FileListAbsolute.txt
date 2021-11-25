@@ -65,3 +65,5 @@ C:\Users\lhgzhy0\Desktop\ex\dotnet-st-backup\egRelationalDT\egRelationalDT\bin\D
 C:\Users\lhgzhy0\Desktop\ex\dotnet-st-backup\egRelationalDT\egRelationalDT\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
 C:\Users\lhgzhy0\Desktop\ex\dotnet-st-backup\egRelationalDT\egRelationalDT\obj\Debug\netcoreapp3.1\egRelationalDT.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\lhgzhy0\Desktop\ex\dotnet-st-backup\egRelationalDT\egRelationalDT\obj\Debug\netcoreapp3.1\egRelationalDT.csproj.CopyComplete
+C:\Users\lhgzhy0\Desktop\ex\dotnet-st-backup\egRelationalDT\egRelationalDT\bin\Debug\netcoreapp3.1\Humanizer.dll
+C:\Users\lhgzhy0\Desktop\ex\dotnet-st-backup\egRelationalDT\egRelationalDT\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.Design.dll

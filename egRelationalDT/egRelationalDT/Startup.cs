@@ -62,6 +62,9 @@ namespace egRelationalDT
                 endpoints.MapControllers();
             });
 
+            // seed Data if DB is empty
+            AppDbInitializer.Seed(app);
+
             // Swagger Configure
             app.UseSwagger();
             app.UseSwaggerUI(s =>

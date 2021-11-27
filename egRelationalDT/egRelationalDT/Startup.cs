@@ -1,4 +1,5 @@
 using egRelationalDT.Data;
+using egRelationalDT.Data.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -35,6 +36,9 @@ namespace egRelationalDT
 
             // configure DBContext with SQL
             services.AddDbContext<AppDbContext>(options => options.UseSqlServer(ConnectionString));
+
+            // add Services
+            services.AddTransient<BookService>();
 
             // Swagger starting
             services.AddSwaggerGen(s =>

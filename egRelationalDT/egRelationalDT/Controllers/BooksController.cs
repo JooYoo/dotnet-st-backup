@@ -1,5 +1,6 @@
 ﻿using egRelationalDT.Data.Models;
 using egRelationalDT.Data.Services;
+using egRelationalDT.Data.ViewModels;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -24,6 +25,13 @@ namespace egRelationalDT.Controllers
         {
             var books = _bookService.GetBooks();
             return Ok(books);
+        }
+
+        [HttpPost("add-book")]
+        public IActionResult AddBook([FromBody]BookVM book)
+        {
+            _bookService.AddBook(book);
+            return Ok();
         }
     }
 }

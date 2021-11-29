@@ -14,7 +14,7 @@ namespace egRelationalDT.Controllers
     [ApiController]
     public class BooksController : ControllerBase
     {
-        public BookService _bookService { get; set; }
+        private BookService _bookService { get; set; }
         public BooksController(BookService bookService)
         {
             _bookService = bookService;
@@ -27,10 +27,32 @@ namespace egRelationalDT.Controllers
             return Ok(books);
         }
 
+        [HttpGet("get-book-by-id/{id}")]
+        public IActionResult GetBookById(int id)
+        {
+            var theBook = _bookService.GetBookById(id);
+            return Ok(theBook);
+        }
+
         [HttpPost("add-book")]
-        public IActionResult AddBook([FromBody]BookVM book)
+        public IActionResult AddBook([FromBody] BookVM book)
         {
             _bookService.AddBook(book);
+            return Ok();
+        }
+
+        [HttpPut("update-book-by-id/{id}")]
+        public IActionResult UpdateBookById(int id, [FromBody] BookVM book)
+        {
+            var theBook = _bookService.UpdateBookById(id, book);
+            return Ok(theBook);
+        }
+
+        [HttpDelete("delete-book-by-id/{id}")]
+        public IActionResult DeleteBookById(int id)
+        {
+            _bookService.DeleteBookById(id);
+
             return Ok();
         }
     }

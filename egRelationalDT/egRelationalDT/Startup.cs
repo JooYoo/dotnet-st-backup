@@ -39,6 +39,8 @@ namespace egRelationalDT
 
             // add Services
             services.AddTransient<BookService>();
+            services.AddTransient<PublisherService>();
+            services.AddTransient<AuthorService>();
 
             // Swagger starting
             services.AddSwaggerGen(s =>
@@ -67,7 +69,7 @@ namespace egRelationalDT
             });
 
             // seed Data if DB is empty
-            AppDbInitializer.Seed(app);
+            //AppDbInitializer.Seed(app);
 
             // Swagger Configure
             app.UseSwagger();

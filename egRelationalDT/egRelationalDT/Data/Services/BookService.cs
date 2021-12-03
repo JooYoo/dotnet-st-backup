@@ -25,7 +25,7 @@ namespace egRelationalDT.Data.Services
             return _context.Books.FirstOrDefault(book => book.Id == id);
         }
 
-        public void AddBook(BookVM bookVM)
+        public void AddBookWithAuthors(BookVM bookVM)
         {
             var newBook = new Book()
             {
@@ -35,13 +35,25 @@ namespace egRelationalDT.Data.Services
                 DateRead = bookVM.IsRead ? bookVM.DateRead : null,
                 Rate = bookVM.IsRead ? bookVM.Rate : null,
                 Genre = bookVM.Genre,
-                Author = bookVM.Author,
                 CoverUrl = bookVM.CoverUrl,
-                DateAdded = DateTime.Now
+                DateAdded = DateTime.Now,
+                PublisherId = bookVM.PublisherId,
             };
 
             _context.Books.Add(newBook);
             _context.SaveChanges();
+
+            foreach (var id in bookVM.AuthorIds)
+            {
+                var newBook_author = new Book_Author()
+                {
+                    BookId = newBook.Id,
+                    AuthorId = id
+                };
+
+                _context.Book_Authors.Add(newBook_author);
+                _context.SaveChanges();
+            }
         }
 
         public Book UpdateBookById(int id, BookVM bookVM)
@@ -58,7 +70,6 @@ namespace egRelationalDT.Data.Services
                 theBook.DateRead = bookVM.IsRead ? bookVM.DateRead : null;
                 theBook.Rate = bookVM.IsRead ? bookVM.Rate : null;
                 theBook.Genre = bookVM.Genre;
-                theBook.Author = bookVM.Author;
                 theBook.CoverUrl = bookVM.CoverUrl;
                 theBook.DateAdded = DateTime.Now;
 

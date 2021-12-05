@@ -1,12 +1,6 @@
-﻿using egRelationalDT.Data.Models;
-using egRelationalDT.Data.Services;
+﻿using egRelationalDT.Data.Services;
 using egRelationalDT.Data.ViewModels;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace egRelationalDT.Controllers
 {

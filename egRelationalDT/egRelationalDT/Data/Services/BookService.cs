@@ -20,9 +20,22 @@ namespace egRelationalDT.Data.Services
             return _context.Books.ToList();
         }
 
-        public Book GetBookById(int id)
+        public BookWithAuthorVM GetBookById(int bookId)
         {
-            return _context.Books.FirstOrDefault(book => book.Id == id);
+            var _bookWithAuthors = _context.Books.Where(n => n.Id == bookId).Select(bookWithAuthorVM => new BookWithAuthorVM()
+            {
+                Title = bookWithAuthorVM.Title,
+                Description = bookWithAuthorVM.Description,
+                IsRead = bookWithAuthorVM.IsRead,
+                DateRead = bookWithAuthorVM.IsRead ? bookWithAuthorVM.DateRead : null,
+                Rate = bookWithAuthorVM.IsRead ? bookWithAuthorVM.Rate : null,
+                Genre = bookWithAuthorVM.Genre,
+                CoverUrl = bookWithAuthorVM.CoverUrl,
+                PublishName = bookWithAuthorVM.Publisher.Name,
+                AuthorNames = bookWithAuthorVM.Book_Authors.Select(n => n.Author.FullName).ToList()
+            }).FirstOrDefault();
+
+            return _bookWithAuthors;
         }
 
         public void AddBookWithAuthors(BookVM bookVM)

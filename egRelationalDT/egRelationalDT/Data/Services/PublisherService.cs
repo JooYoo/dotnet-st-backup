@@ -1,5 +1,6 @@
 ﻿using egRelationalDT.Data.Models;
 using egRelationalDT.Data.ViewModels;
+using System.Linq;
 
 namespace egRelationalDT.Data.Services
 {
@@ -20,6 +21,22 @@ namespace egRelationalDT.Data.Services
 
             _context.Publishers.Add(newPublisher);
             _context.SaveChanges();
+        }
+
+        public PublisherWithBooksAndAuthorsVM GetPublisherData(int publisherId)
+        {
+            var _pubulisherData = _context.Publishers.Where(p => p.Id == publisherId)
+                .Select(n => new PublisherWithBooksAndAuthorsVM()
+                {
+                    Name = n.Name,
+                    BookAuthors = n.Books.Select(n => new BookAuthorVM()
+                    {
+                        BookName = n.Title,
+                        BookAuthors = n.Book_Authors.Select(n => n.Author.FullName).ToList()
+                    }).ToList()
+                }).FirstOrDefault();
+
+            return _pubulisherData;
         }
     }
 }

@@ -38,5 +38,17 @@ namespace egRelationalDT.Data.Services
 
             return _pubulisherData;
         }
+
+        public void DeletePublisherById(int publisherId)
+        {
+            var _publisher = _context.Publishers.FirstOrDefault(p => p.Id == publisherId);
+
+            if (_publisher != null)
+            {
+                _context.Publishers.Remove(_publisher);
+                _context.SaveChanges();
+            }
+
+        }
     }
 }

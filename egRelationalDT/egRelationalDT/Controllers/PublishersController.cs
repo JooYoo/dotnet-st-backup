@@ -27,5 +27,12 @@ namespace egRelationalDT.Controllers
             var _res = _publisherService.GetPublisherData(id);
             return Ok(_res);
         }
+
+        [HttpDelete("delete-publisher-by-id/{id}")]
+        public IActionResult DeletePublisherById(int id)
+        {
+            _publisherService.DeletePublisherById(id);
+            return Ok();
+        }
     }
 }

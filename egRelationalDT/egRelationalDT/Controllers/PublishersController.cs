@@ -17,8 +17,23 @@ namespace egRelationalDT.Controllers
         [HttpPost("add-publisher")]
         public IActionResult AddPublisher([FromBody] PublisherVM publisher)
         {
-            _publisherService.AddPublisher(publisher);
-            return Ok();
+            var newPublisher = _publisherService.AddPublisher(publisher);
+            return Created(nameof(AddPublisher), newPublisher);
+        }
+
+        [HttpGet("get-publisher-by-id/{id}")]
+        public IActionResult GetPublisherById(int id)
+        {
+            var _res = _publisherService.GetPublisherById(id);
+
+            if (_res != null)
+            {
+                return Ok(_res);
+            }
+            else
+            {
+                return NotFound();
+            }
         }
 
         [HttpGet("get-publisher-books-with-authors/{id}")]

@@ -12,7 +12,7 @@ namespace egRelationalDT.Data.Services
             _context = context;
         }
 
-        public void AddPublisher(PublisherVM publisherVM)
+        public Publisher AddPublisher(PublisherVM publisherVM)
         {
             var newPublisher = new Publisher()
             {
@@ -21,6 +21,13 @@ namespace egRelationalDT.Data.Services
 
             _context.Publishers.Add(newPublisher);
             _context.SaveChanges();
+
+            return newPublisher;
+        }
+
+        public Publisher GetPublisherById(int id)
+        {
+            return _context.Publishers.FirstOrDefault(p => p.Id == id);
         }
 
         public PublisherWithBooksAndAuthorsVM GetPublisherData(int publisherId)

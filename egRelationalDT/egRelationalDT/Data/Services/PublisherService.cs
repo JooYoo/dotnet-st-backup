@@ -1,5 +1,6 @@
 ﻿using egRelationalDT.Data.Models;
 using egRelationalDT.Data.ViewModels;
+using System;
 using System.Linq;
 
 namespace egRelationalDT.Data.Services
@@ -54,6 +55,10 @@ namespace egRelationalDT.Data.Services
             {
                 _context.Publishers.Remove(_publisher);
                 _context.SaveChanges();
+            }
+            else
+            {
+                throw new Exception($"The publisher with id: {publisherId} not exist");
             }
 
         }

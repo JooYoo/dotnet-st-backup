@@ -1,6 +1,7 @@
 ﻿using egRelationalDT.Data.Services;
 using egRelationalDT.Data.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using System;
 
 namespace egRelationalDT.Controllers
 {
@@ -17,8 +18,15 @@ namespace egRelationalDT.Controllers
         [HttpPost("add-publisher")]
         public IActionResult AddPublisher([FromBody] PublisherVM publisher)
         {
-            var newPublisher = _publisherService.AddPublisher(publisher);
-            return Created(nameof(AddPublisher), newPublisher);
+            try
+            {
+                var newPublisher = _publisherService.AddPublisher(publisher);
+                return Created(nameof(AddPublisher), newPublisher);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
         [HttpGet("get-publisher-by-id/{id}")]
@@ -46,8 +54,25 @@ namespace egRelationalDT.Controllers
         [HttpDelete("delete-publisher-by-id/{id}")]
         public IActionResult DeletePublisherById(int id)
         {
-            _publisherService.DeletePublisherById(id);
-            return Ok();
+            try
+            {
+                // TEST: bad arithmetic
+                //int x1 = 1;
+                //int x2 = 0;
+                //int res = x1 / x2;
+
+                _publisherService.DeletePublisherById(id);
+                return Ok();
+            }
+            catch (ArithmeticException ex)
+            {
+                return BadRequest(ex.Message);
+            }
+            catch (Exception ex)
+            {
+
+                return BadRequest(ex.Message);
+            }
         }
     }
 }

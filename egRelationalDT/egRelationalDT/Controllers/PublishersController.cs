@@ -1,5 +1,6 @@
 ﻿using egRelationalDT.Data.Services;
 using egRelationalDT.Data.ViewModels;
+using egRelationalDT.Exceptions;
 using Microsoft.AspNetCore.Mvc;
 using System;
 
@@ -22,6 +23,10 @@ namespace egRelationalDT.Controllers
             {
                 var newPublisher = _publisherService.AddPublisher(publisher);
                 return Created(nameof(AddPublisher), newPublisher);
+            }
+            catch (PublisherNameException ex)
+            {
+                return BadRequest($"{ex.Message}, Publisher name: {ex.PublisherName}");
             }
             catch (Exception ex)
             {

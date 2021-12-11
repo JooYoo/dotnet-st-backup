@@ -1,7 +1,9 @@
 ﻿using egRelationalDT.Data.Models;
 using egRelationalDT.Data.ViewModels;
+using egRelationalDT.Exceptions;
 using System;
 using System.Linq;
+using System.Text.RegularExpressions;
 
 namespace egRelationalDT.Data.Services
 {
@@ -15,6 +17,12 @@ namespace egRelationalDT.Data.Services
 
         public Publisher AddPublisher(PublisherVM publisherVM)
         {
+            // throw exception when input starts with number
+            if (StringStartsWithNumber(publisherVM.Name))
+            {
+                throw new PublisherNameException("Name starts with number", publisherVM.Name);
+            }
+
             var newPublisher = new Publisher()
             {
                 Name = publisherVM.Name
@@ -61,6 +69,11 @@ namespace egRelationalDT.Data.Services
                 throw new Exception($"The publisher with id: {publisherId} not exist");
             }
 
+        }
+
+        private bool StringStartsWithNumber(string name)
+        {
+            return Regex.IsMatch(name, @"^\d");
         }
     }
 }

@@ -26,6 +26,7 @@ namespace egRelationalDT.Controllers
             }
             catch (PublisherNameException ex)
             {
+                // TEST: when the PublisherName starts with number thie Exception will be called
                 return BadRequest($"{ex.Message}, Publisher name: {ex.PublisherName}");
             }
             catch (Exception ex)
@@ -37,6 +38,9 @@ namespace egRelationalDT.Controllers
         [HttpGet("get-publisher-by-id/{id}")]
         public IActionResult GetPublisherById(int id)
         {
+            // TEST: throw Exception by Middleware
+            throw new Exception("🥱 Exception handled by Middleware");
+
             var _res = _publisherService.GetPublisherById(id);
 
             if (_res != null)

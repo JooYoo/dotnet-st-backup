@@ -1,5 +1,6 @@
 using egRelationalDT.Data;
 using egRelationalDT.Data.Services;
+using egRelationalDT.Exceptions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -62,6 +63,9 @@ namespace egRelationalDT
             app.UseRouting();
 
             app.UseAuthorization();
+
+            // Exception Middleware
+            app.ConfigureBuildInExceptionHandler();
 
             app.UseEndpoints(endpoints =>
             {

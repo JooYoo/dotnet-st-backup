@@ -1,8 +1,10 @@
-﻿using egRelationalDT.Data.Services;
+﻿using egRelationalDT.Data.Models;
+using egRelationalDT.Data.Services;
 using egRelationalDT.Data.ViewModels;
 using egRelationalDT.Exceptions;
 using Microsoft.AspNetCore.Mvc;
 using System;
+
 
 namespace egRelationalDT.Controllers
 {
@@ -35,17 +37,35 @@ namespace egRelationalDT.Controllers
             }
         }
 
-        [HttpGet("get-publisher-by-id/{id}")]
-        public IActionResult GetPublisherById(int id)
-        {
-            // TEST: throw Exception by Middleware
-            throw new Exception("🥱 Exception handled by Middleware");
+        //[HttpGet("get-publisher-by-id/{id}")]
+        //public IActionResult GetPublisherById(int id)
+        //{
+        //    // TEST: throw Exception by Middleware
+        //    //throw new Exception("🥱 Exception handled by Middleware");
 
+        //    var _res = _publisherService.GetPublisherById(id);
+
+        //    if (_res != null)
+        //    {
+        //        return Ok(_res);
+        //        //return _res;
+        //    }
+        //    else
+        //    {
+        //        return NotFound();
+        //        //return null;
+        //    }
+        //}
+
+        // TEMP: ActionResult<T> e.g.
+        [HttpGet("get-publisher-by-id/{id}")]
+        public ActionResult<Publisher> GetPublisherById(int id)
+        {
             var _res = _publisherService.GetPublisherById(id);
 
             if (_res != null)
             {
-                return Ok(_res);
+                return _res;
             }
             else
             {

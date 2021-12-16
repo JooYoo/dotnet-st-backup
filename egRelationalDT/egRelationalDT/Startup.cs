@@ -65,8 +65,8 @@ namespace egRelationalDT
             app.UseAuthorization();
 
             // Exception Middleware
-            //app.ConfigureBuildInExceptionHandler();
-            app.ConfigureCustomExceptionHandler();
+            app.ConfigureBuildInExceptionHandler();
+            //app.ConfigureCustomExceptionHandler();
 
             app.UseEndpoints(endpoints =>
             {

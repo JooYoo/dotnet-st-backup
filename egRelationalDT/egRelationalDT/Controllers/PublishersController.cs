@@ -1,4 +1,5 @@
-﻿using egRelationalDT.Data.Models;
+﻿using egRelationalDT.ActionResults;
+using egRelationalDT.Data.Models;
 using egRelationalDT.Data.Services;
 using egRelationalDT.Data.ViewModels;
 using egRelationalDT.Exceptions;
@@ -57,21 +58,32 @@ namespace egRelationalDT.Controllers
         //    }
         //}
 
-        // TEMP: ActionResult<T> e.g.
         [HttpGet("get-publisher-by-id/{id}")]
-        public ActionResult<Publisher> GetPublisherById(int id)
+        public CustomActionResult GetPublisherById(int id)
         {
             var _res = _publisherService.GetPublisherById(id);
 
             if (_res != null)
             {
-                return _res;
+                var _responseObj = new CustomActionResultVM()
+                {
+                    Publisher = _res
+                };
+
+                return new CustomActionResult(_responseObj);
             }
             else
             {
-                return NotFound();
+                var _responseObj = new CustomActionResultVM()
+                {
+                    Exception = new Exception("CustomActionResult: not found item")
+                };
+
+                return new CustomActionResult(_responseObj);
+
             }
         }
+
 
         [HttpGet("get-publisher-books-with-authors/{id}")]
         public IActionResult GetPublisherData(int id)

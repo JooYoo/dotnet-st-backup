@@ -19,6 +19,21 @@ namespace egRelationalDT.Controllers
             _publisherService = publisherService;
         }
 
+        [HttpGet("get-all-publishers")]
+        public IActionResult GetAllPublishers(string sortby)
+        {
+            try
+            {
+                var res = _publisherService.GetAllPublishers(sortby);
+                return Ok(res);
+            }
+            catch 
+            {
+                return BadRequest("No publishers data.");
+               
+            }
+        }
+
         [HttpPost("add-publisher")]
         public IActionResult AddPublisher([FromBody] PublisherVM publisher)
         {

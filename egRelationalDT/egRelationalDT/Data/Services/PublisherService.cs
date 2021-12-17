@@ -2,6 +2,7 @@
 using egRelationalDT.Data.ViewModels;
 using egRelationalDT.Exceptions;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 
@@ -13,6 +14,27 @@ namespace egRelationalDT.Data.Services
         public PublisherService(AppDbContext context)
         {
             _context = context;
+        }
+
+        public List<Publisher> GetAllPublishers(string sortby)
+        {
+            // default sort, based on the key
+            var allPublishers = _context.Publishers.OrderBy(n => n.Name).ToList();
+
+            // sortby publisher-name
+            if (!string.IsNullOrEmpty(sortby))
+            {
+                switch (sortby)
+                {
+                    case "name_desc":
+                        allPublishers = allPublishers.OrderByDescending(n => n.Name).ToList();
+                        break;
+                    default:
+                        break;
+                }
+            }
+
+            return allPublishers;
         }
 
         public Publisher AddPublisher(PublisherVM publisherVM)

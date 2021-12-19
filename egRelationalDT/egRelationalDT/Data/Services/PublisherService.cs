@@ -16,7 +16,7 @@ namespace egRelationalDT.Data.Services
             _context = context;
         }
 
-        public List<Publisher> GetAllPublishers(string sortby)
+        public List<Publisher> GetAllPublishers(string sortby, string searchString)
         {
             // default sort, based on the key
             var allPublishers = _context.Publishers.OrderBy(n => n.Name).ToList();
@@ -33,6 +33,13 @@ namespace egRelationalDT.Data.Services
                         break;
                 }
             }
+
+            // filter by publisher-name
+            if (!string.IsNullOrEmpty(searchString))
+            {
+                allPublishers = allPublishers.Where(p => p.Name.Contains(searchString)).ToList();
+            }
+
 
             return allPublishers;
         }

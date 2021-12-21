@@ -1,4 +1,5 @@
 ﻿using egRelationalDT.Data.Models;
+using egRelationalDT.Data.Paging;
 using egRelationalDT.Data.ViewModels;
 using egRelationalDT.Exceptions;
 using System;
@@ -16,7 +17,7 @@ namespace egRelationalDT.Data.Services
             _context = context;
         }
 
-        public List<Publisher> GetAllPublishers(string sortby, string searchString)
+        public List<Publisher> GetAllPublishers(string sortby, string searchString, int? pageNumber)
         {
             // default sort, based on the key
             var allPublishers = _context.Publishers.OrderBy(n => n.Name).ToList();
@@ -39,6 +40,10 @@ namespace egRelationalDT.Data.Services
             {
                 allPublishers = allPublishers.Where(p => p.Name.Contains(searchString)).ToList();
             }
+
+            // paging
+            int pageSize = 5;
+            allPublishers = PaginatedList<Publisher>.Create(allPublishers.AsQueryable(), pageNumber ?? 1, pageSize);
 
 
             return allPublishers;

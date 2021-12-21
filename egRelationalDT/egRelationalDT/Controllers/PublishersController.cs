@@ -20,11 +20,11 @@ namespace egRelationalDT.Controllers
         }
 
         [HttpGet("get-all-publishers")]
-        public IActionResult GetAllPublishers(string sortby, string searchString)
+        public IActionResult GetAllPublishers(string sortby, string searchString, int pageNumber)
         {
             try
             {
-                var res = _publisherService.GetAllPublishers(sortby, searchString);
+                var res = _publisherService.GetAllPublishers(sortby, searchString, pageNumber);
                 return Ok(res);
             }
             catch 

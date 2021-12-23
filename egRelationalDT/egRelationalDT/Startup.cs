@@ -43,7 +43,10 @@ namespace egRelationalDT
             services.AddTransient<PublisherService>();
             services.AddTransient<AuthorService>();
 
-            services.AddApiVersioning();
+            services.AddApiVersioning(config=> {
+                config.DefaultApiVersion = new ApiVersion(1, 0);
+                config.AssumeDefaultVersionWhenUnspecified = true;
+            });
 
             // Swagger starting
             services.AddSwaggerGen(s =>

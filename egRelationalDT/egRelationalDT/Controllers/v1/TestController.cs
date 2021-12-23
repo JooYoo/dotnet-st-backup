@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace egRelationalDT.Controllers.v1
 {
+    [ApiVersion("1.0")]
     [Route("api/[controller]")]
     [ApiController]
     public class TestController : ControllerBase

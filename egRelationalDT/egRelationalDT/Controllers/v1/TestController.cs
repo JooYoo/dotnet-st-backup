@@ -3,8 +3,11 @@
 namespace egRelationalDT.Controllers.v1
 {
     [ApiVersion("1.0")]
-    //[Route("api/[controller]")]
-    [Route("api/v{version:apiVersion}/[controller]")]
+    [ApiVersion("1.2")]
+    [ApiVersion("1.9")]
+
+    [Route("api/[controller]")]
+    
     [ApiController]
     public class TestController : ControllerBase
     {
@@ -12,6 +15,18 @@ namespace egRelationalDT.Controllers.v1
         public IActionResult Get()
         {
             return Ok("Test Controller V1");
+        }
+
+        [HttpGet("get-test-data"), MapToApiVersion("1.2")]
+        public IActionResult Get12()
+        {
+            return Ok("Test Controller V1.2");
+        }
+
+        [HttpGet("get-test-data"), MapToApiVersion("1.9")]
+        public IActionResult Get19()
+        {
+            return Ok("Test Controller V1.9");
         }
     }
 }

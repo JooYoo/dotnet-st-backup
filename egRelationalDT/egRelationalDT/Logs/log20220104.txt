@@ -1,0 +1,1 @@
+01/04/2022 09:16:05 +01:00 [Information] - Message: This is a mock log in GetAllPublishers-Controller

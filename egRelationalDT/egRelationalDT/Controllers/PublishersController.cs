@@ -1,9 +1,9 @@
 ﻿using egRelationalDT.ActionResults;
-using egRelationalDT.Data.Models;
 using egRelationalDT.Data.Services;
 using egRelationalDT.Data.ViewModels;
 using egRelationalDT.Exceptions;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using System;
 
 
@@ -13,10 +13,13 @@ namespace egRelationalDT.Controllers
     [ApiController]
     public class PublishersController : ControllerBase
     {
-        public PublisherService _publisherService { get; set; }
-        public PublishersController(PublisherService publisherService)
+        private PublisherService _publisherService;
+        private readonly ILogger<PublishersController> _logger;
+
+        public PublishersController(PublisherService publisherService, ILogger<PublishersController> logger)
         {
             _publisherService = publisherService;
+            _logger = logger;
         }
 
         [HttpGet("get-all-publishers")]
@@ -24,6 +27,10 @@ namespace egRelationalDT.Controllers
         {
             try
             {
+
+                // mock log
+                _logger.LogInformation("This is a mock log in GetAllPublishers-Controller");
+
                 var res = _publisherService.GetAllPublishers(sortby, searchString, pageNumber);
                 return Ok(res);
             }

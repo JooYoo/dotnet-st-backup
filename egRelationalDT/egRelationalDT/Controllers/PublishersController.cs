@@ -26,7 +26,7 @@ namespace egRelationalDT.Controllers
         public IActionResult GetAllPublishers(string sortby, string searchString, int pageNumber)
         {
             // mock exception
-            throw new Exception("This is an mock Exception from GetAllPublishers()");
+            //throw new Exception("This is an mock Exception from GetAllPublishers()");
 
             try
             {

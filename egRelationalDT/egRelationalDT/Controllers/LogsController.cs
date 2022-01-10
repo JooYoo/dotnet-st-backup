@@ -24,7 +24,6 @@ namespace egRelationalDT.Controllers
             }
             catch (Exception)
             {
-
                 return BadRequest("Could not load logs from DB.");
             }
         }

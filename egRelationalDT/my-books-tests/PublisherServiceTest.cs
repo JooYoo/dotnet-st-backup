@@ -1,9 +1,11 @@
 using egRelationalDT.Data;
 using egRelationalDT.Data.Models;
+using egRelationalDT.Data.Services;
 using Microsoft.EntityFrameworkCore;
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace my_books_tests
 {
@@ -17,6 +19,9 @@ namespace my_books_tests
 
         AppDbContext context;
 
+        // setup PublisherService dependency
+        private PublisherService publisherService;
+
 
         [OneTimeSetUp]
         public void Setup()
@@ -27,7 +32,46 @@ namespace my_books_tests
 
             // seed test data
             SeedDatabase();
+
+            // init PublisherService
+            publisherService = new PublisherService(context);
         }
+
+
+        // start Unit Test
+        [Test, Order(1)]
+        public void GetAllPublishers_WithNoSortBy_WithNoSearchString_WithNoPageNumber()
+        {
+            var res = publisherService.GetAllPublishers("", "", null);
+            // each Page maximal 5 items
+            Assert.That(res.Count, Is.EqualTo(5));
+        }
+
+        [Test, Order(2)]
+        public void GetAllPublishers_WithNoSortBy_WithNoSearchString_WithPageNumber()
+        {
+            var res = publisherService.GetAllPublishers("", "", 2);
+            // each Page maximal 5 items
+            Assert.That(res.Count, Is.EqualTo(2));
+        }
+
+        [Test, Order(3)]
+        public void GetAllPublishers_WithNoSortBy_WithSearchString_WithNoPageNumber()
+        {
+            var res = publisherService.GetAllPublishers("", "3", null);
+            // each Page maximal 5 items
+            Assert.That(res.FirstOrDefault().Name, Is.EqualTo("Publisher 3"));
+        }
+
+        [Test, Order(4)]
+        public void GetAllPublishers_WithSortBy_WithNoSearchString_WithNoPageNumber()
+        {
+            var res = publisherService.GetAllPublishers("name_desc", "", null);
+            // each Page maximal 5 items
+            Assert.That(res.FirstOrDefault().Name, Is.EqualTo("Publisher 7"));
+        }
+
+
 
         [OneTimeTearDown]
         public void CleanUp()
@@ -62,6 +106,10 @@ namespace my_books_tests
                     new Publisher() {
                         Id = 6,
                         Name = "Publisher 6"
+                    },
+                     new Publisher() {
+                        Id = 7,
+                        Name = "Publisher 7"
                     },
             };
             context.Publishers.AddRange(publishers);

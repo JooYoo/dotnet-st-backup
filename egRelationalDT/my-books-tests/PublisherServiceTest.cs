@@ -71,6 +71,31 @@ namespace my_books_tests
             Assert.That(res.FirstOrDefault().Name, Is.EqualTo("Publisher 7"));
         }
 
+        [Test, Order(5)]
+        public void GetPublisherById_WithId1()
+        {
+            var res = publisherService.GetPublisherById(1);
+
+            Assert.That(res.Id, Is.EqualTo(1));
+            Assert.That(res.Name, Is.EqualTo("Publisher 1"));
+        }
+
+        [Test, Order(6)]
+        public void GetPublisherById_WithId7()
+        {
+            var res = publisherService.GetPublisherById(7);
+
+            Assert.That(res.Name, Is.EqualTo("Publisher 7"));
+        }
+
+        [Test, Order(7)]
+        public void GetPublisherById_WithNoResponse()
+        {
+            var res = publisherService.GetPublisherById(99);
+
+            Assert.That(res, Is.Null);
+        }
+
 
 
         [OneTimeTearDown]

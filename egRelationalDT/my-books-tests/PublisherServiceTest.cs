@@ -1,6 +1,8 @@
 using egRelationalDT.Data;
 using egRelationalDT.Data.Models;
 using egRelationalDT.Data.Services;
+using egRelationalDT.Data.ViewModels;
+using egRelationalDT.Exceptions;
 using Microsoft.EntityFrameworkCore;
 using NUnit.Framework;
 using System;
@@ -97,6 +99,36 @@ namespace my_books_tests
         }
 
 
+        [Test, Order(8)]
+        public void AddPublisher_WithException()
+        {
+            // create a new Object
+            var newPublisher = new PublisherVM()
+            {
+                Name = "123 with Exception"
+            };
+
+            // check the result
+            Assert.That(() => publisherService.AddPublisher(newPublisher),
+                Throws.Exception.TypeOf<PublisherNameException>().With.Message.EqualTo("Name starts with number"));
+        }
+
+
+        [Test, Order(9)]
+        public void AddPublisher_WithNoException()
+        {
+            // create a new Object
+            var newPublisher = new PublisherVM()
+            {
+                Name = "Without Exception"
+            };
+            // get result
+            var res = publisherService.AddPublisher(newPublisher);
+            // check result
+            Assert.That(res, Is.Not.Null);
+            Assert.That(res.Name, Does.StartWith("Without"));
+            Assert.That(res.Id, Is.Not.Null);
+        }
 
         [OneTimeTearDown]
         public void CleanUp()

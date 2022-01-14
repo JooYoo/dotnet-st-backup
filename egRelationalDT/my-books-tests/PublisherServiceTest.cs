@@ -130,6 +130,19 @@ namespace my_books_tests
             Assert.That(res.Id, Is.Not.Null);
         }
 
+        [Test, Order(10)]
+        public void GetPublisherData_Test()
+        {
+            var res = publisherService.GetPublisherData(1);
+
+            Assert.That(res.Name, Is.EqualTo("Publisher 1"));
+            Assert.That(res.BookAuthors, Is.Not.Empty);
+            Assert.That(res.BookAuthors.Count, Is.GreaterThan(1));
+
+            var firstBookName = res.BookAuthors.OrderBy(n => n.BookName).FirstOrDefault().BookName;
+            Assert.That(firstBookName, Is.EqualTo("Book 1 Title"));
+        }
+
         [OneTimeTearDown]
         public void CleanUp()
         {

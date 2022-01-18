@@ -62,51 +62,51 @@ namespace egRelationalDT.Controllers
             }
         }
 
-        //[HttpGet("get-publisher-by-id/{id}")]
-        //public IActionResult GetPublisherById(int id)
-        //{
-        //    // TEST: throw Exception by Middleware
-        //    //throw new Exception("🥱 Exception handled by Middleware");
-
-        //    var _res = _publisherService.GetPublisherById(id);
-
-        //    if (_res != null)
-        //    {
-        //        return Ok(_res);
-        //        //return _res;
-        //    }
-        //    else
-        //    {
-        //        return NotFound();
-        //        //return null;
-        //    }
-        //}
-
         [HttpGet("get-publisher-by-id/{id}")]
-        public CustomActionResult GetPublisherById(int id)
+        public IActionResult GetPublisherById(int id)
         {
+            // TEST: throw Exception by Middleware
+            //throw new Exception("🥱 Exception handled by Middleware");
+
             var _res = _publisherService.GetPublisherById(id);
 
             if (_res != null)
             {
-                var _responseObj = new CustomActionResultVM()
-                {
-                    Publisher = _res
-                };
-
-                return new CustomActionResult(_responseObj);
+                return Ok(_res);
+                //return _res;
             }
             else
             {
-                var _responseObj = new CustomActionResultVM()
-                {
-                    Exception = new Exception("CustomActionResult: not found item")
-                };
-
-                return new CustomActionResult(_responseObj);
-
+                return NotFound();
+                //return null;
             }
         }
+
+        //[HttpGet("get-publisher-by-id/{id}")]
+        //public CustomActionResult GetPublisherById(int id)
+        //{
+        //    var _res = _publisherService.GetPublisherById(id);
+
+        //    if (_res != null)
+        //    {
+        //        var _responseObj = new CustomActionResultVM()
+        //        {
+        //            Publisher = _res
+        //        };
+
+        //        return new CustomActionResult(_responseObj);
+        //    }
+        //    else
+        //    {
+        //        var _responseObj = new CustomActionResultVM()
+        //        {
+        //            Exception = new Exception("CustomActionResult: not found item")
+        //        };
+
+        //        return new CustomActionResult(_responseObj);
+
+        //    }
+        //}
 
 
         [HttpGet("get-publisher-books-with-authors/{id}")]

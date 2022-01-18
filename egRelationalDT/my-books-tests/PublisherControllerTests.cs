@@ -1,4 +1,5 @@
-﻿using egRelationalDT.Controllers;
+﻿using egRelationalDT.ActionResults;
+using egRelationalDT.Controllers;
 using egRelationalDT.Data;
 using egRelationalDT.Data.Models;
 using egRelationalDT.Data.Services;
@@ -55,6 +56,23 @@ namespace my_books_tests
             Assert.That(actionResultDataSecondPage.First().Name, Is.EqualTo("Publisher 1"));
             Assert.That(actionResultDataSecondPage.First().Id, Is.EqualTo(1));
             Assert.That(actionResultDataSecondPage.Count, Is.EqualTo(1));
+        }
+
+        [Test, Order(2)]
+        public void HTTPGET_GetPublisherById_WithId_FoundData_Test()
+        {
+            IActionResult actionResult = publishersController.GetPublisherById(1);
+            Assert.That(actionResult, Is.TypeOf<OkObjectResult>());
+
+            var actionResData = (actionResult as OkObjectResult).Value as Publisher;
+            Assert.That(actionResData.Name, Is.EqualTo("publisher 1").IgnoreCase);
+        }
+
+        [Test, Order(3)]
+        public void HTTPGET_GetPublisherById_WithId_NotFoundData_Test()
+        {
+            IActionResult notFoundActionRes = publishersController.GetPublisherById(100);
+            Assert.That(notFoundActionRes, Is.TypeOf<NotFoundResult>());
         }
 
 

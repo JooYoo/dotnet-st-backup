@@ -3,6 +3,7 @@ using egRelationalDT.Controllers;
 using egRelationalDT.Data;
 using egRelationalDT.Data.Models;
 using egRelationalDT.Data.Services;
+using egRelationalDT.Data.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging.Abstractions;
@@ -75,6 +76,37 @@ namespace my_books_tests
             Assert.That(notFoundActionRes, Is.TypeOf<NotFoundResult>());
         }
 
+        [Test, Order(4)]
+        public void HTTPPOST_AddPublisher_ReturnsCreated_Test()
+        {
+            // create a new publisher
+            var newPublisher = new PublisherVM()
+            {
+                Name = "New Publisher"
+            };
+
+            // get a ActionResult
+            IActionResult actionRes = publishersController.AddPublisher(newPublisher);
+
+            // assert result
+            Assert.That(actionRes, Is.TypeOf<CreatedResult>());
+        }
+
+        [Test, Order(5)]
+        public void HTTPPOST_AddPublisher_ReturnsBadRequest_Test()
+        {
+            // create a new publisher
+            var newPublisher = new PublisherVM()
+            {
+                Name = "123 New Publisher"
+            };
+
+            // get a ActionResult
+            IActionResult actionRes = publishersController.AddPublisher(newPublisher);
+
+            // assert result
+            Assert.That(actionRes, Is.TypeOf<BadRequestObjectResult>());
+        }
 
 
         [OneTimeTearDown]
